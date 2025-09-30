@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBT & Aadhaar Guide Prototype</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="bg-white p-4 shadow-md sticky top-0 z-10">
+        <h1 class="text-xl font-bold text-gray-800 flex items-center">
+            <i data-lucide="shield-check" class="text-[var(--color-primary)] mr-2 w-6 h-6"></i>
+            DBT-Connect: Guide & Verification
+        </h1>
+    </header>
+
+    <main class="flex-grow p-4 pb-20 overflow-y-auto">
+
+        <section id="home-section" class="page-section">
+            <div class="lg:grid lg:grid-cols-5 lg:gap-8">
+                <div class="lg:col-span-3 space-y-6">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Welcome to Your DBT Hub!</h2>
+                    <p class="text-gray-600 mb-6">Start your journey to understand and secure your Direct Benefit Transfers. Select a section below or chat with Aadhaar-Buddy for quick help.</p>
+
+                    <div class="space-y-4">
+                        <div onclick="navigate('awareness-section')" class="card-shadow bg-white p-4 rounded-xl hover:shadow-lg transition cursor-pointer border border-gray-100 flex items-center">
+                            <i data-lucide="graduation-cap" class="w-8 h-8 text-indigo-500 mr-4 flex-shrink-0"></i>
+                            <div>
+                                <h3 class="font-semibold text-lg">Awareness Content</h3>
+                                <p class="text-sm text-gray-500">Videos and infographics to build your knowledge.</p>
+                            </div>
+                        </div>
+
+                        <div onclick="navigate('quiz-section')" class="card-shadow bg-white p-4 rounded-xl hover:shadow-lg transition cursor-pointer border border-gray-100 flex items-center">
+                            <i data-lucide="trophy" class="w-8 h-8 text-amber-500 mr-4 flex-shrink-0"></i>
+                            <div>
+                                <h3 class="font-semibold text-lg">Quiz & Badges</h3>
+                                <p class="text-sm text-gray-500">Test your knowledge and earn achievements.</p>
+                            </div>
+                        </div>
+
+                        <div onclick="navigate('verification-section')" class="card-shadow bg-white p-4 rounded-xl hover:shadow-lg transition cursor-pointer border border-gray-100 flex items-center">
+                            <i data-lucide="check-circle" class="w-8 h-8 text-green-600 mr-4 flex-shrink-0"></i>
+                            <div>
+                                <h3 class="font-semibold text-lg">Account Verification</h3>
+                                <p class="text-sm text-gray-500">Simulate checking your DBT linking status.</p>
+                            </div>
+                        </div>
+
+                        <div class="card-shadow bg-white p-4 rounded-xl border border-gray-100 flex items-center">
+                            <i data-lucide="info" class="w-8 h-8 text-gray-400 mr-4 flex-shrink-0"></i>
+                            <div>
+                                <h3 class="font-semibold text-lg">Quick Info</h3>
+                                <p class="text-sm text-gray-500">Essential facts about Aadhaar and DBT.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 mt-8 lg:mt-0">
+                    <button id="chatbot-open-icon" onclick="toggleChatbot(true)" class="w-full bg-[var(--color-primary)] text-white p-4 rounded-xl card-shadow hover:bg-teal-600 transition flex items-center justify-center">
+                        <i data-lucide="bot" class="w-6 h-6 mr-3"></i>
+                        <span class="font-semibold text-lg">Chat with Aadhaar-Buddy</span>
+                    </button>
+
+                    <div id="full-chatbot-interface" class="mt-4 bg-white p-4 rounded-xl card-shadow border border-gray-100 hidden h-[400px]">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center justify-between">
+                            <span class="flex items-center"><i data-lucide="bot" class="w-6 h-6 mr-2 text-pink-500"></i>Aadhaar-Buddy</span>
+                            <button onclick="toggleChatbot(false)" class="text-gray-400 hover:text-gray-600 transition p-1 rounded-full hover:bg-gray-100"><i data-lucide="x" class="w-5 h-5"></i></button>
+                        </h3>
+                        <div id="chatbot-history" class="bg-gray-50 p-3 mb-4 space-y-3 h-[250px] overflow-y-auto">
+                            <div class="chatbot-message-ai p-3 rounded-xl">
+                                Hello! I'm Aadhaar-Buddy, your DBT-Guide. I can answer common questions. Try asking: **"What is DBT?"** or **"How do I check my status?"**
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <input type="text" id="chatbot-input" placeholder="Ask a question..." class="flex-grow p-3 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]">
+                            <button id="chatbot-send-btn" class="bg-[var(--color-primary)] text-white p-3 rounded-r-lg hover:bg-teal-600 transition">
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="awareness-section" class="page-section hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">DBT & Aadhaar Awareness</h2>
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold text-[var(--color-primary)] mb-3 flex items-center"><i data-lucide="youtube" class="w-5 h-5 mr-2"></i>Video Library</h3>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg card-shadow">
+                        <p class="font-medium">1. What does 'Aadhaar Linked' mean?</p>
+                        <p class="text-sm text-gray-500">A 2-min animated explainer. (Simulated Video)</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg card-shadow">
+                        <p class="font-medium">2. DBT-Enabled Status: Why it matters.</p>
+                        <p class="text-sm text-gray-500">Focus on NPCI Mapper seeding. (Simulated Video)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold text-[var(--color-primary)] mb-3 flex items-center"><i data-lucide="image" class="w-5 h-5 mr-2"></i>Infographics</h3>
+                <div class="space-y-4">
+                    <div class="bg-white p-4 rounded-lg card-shadow border-l-4 border-yellow-500">
+                        <p class="font-medium">Infographic: 3 Steps to Check DBT Status</p>
+                        <p class="text-sm text-gray-500">Visually rich guide for account verification.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg card-shadow border-l-4 border-teal-500">
+                        <p class="font-medium">Comparison: Linked vs. DBT-Enabled</p>
+                        <p class="text-sm text-gray-500">Key differences and implications for transfers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz-section" class="page-section hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Quiz & Achievements</h2>
+            <div class="bg-white p-6 rounded-xl card-shadow mb-8">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Interactive Quiz: DBT Fundamentals</h3>
+                <div id="quiz-area" class="space-y-4"></div>
+                <p id="quiz-result" class="mt-4 text-center font-bold"></p>
+                <button id="quiz-start-btn" class="w-full bg-blue-600 text-white p-3 rounded-lg mt-4 hover:bg-blue-700 transition">Start Level 1 Quiz</button>
+            </div>
+            <div class="bg-white p-6 rounded-xl card-shadow">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Your Achievements</h3>
+                <div class="grid grid-cols-3 gap-4 text-center" id="badges-container">
+                    <div id="badge-knowledge" class="p-3 rounded-lg bg-gray-100 border-2 border-dashed border-gray-300">
+                        <i data-lucide="book-open" class="w-8 h-8 mx-auto text-gray-500"></i>
+                        <p class="text-xs font-medium mt-1 text-gray-600">Knowledge Seeker</p>
+                    </div>
+                    <div id="badge-quizmaster" class="p-3 rounded-lg bg-gray-100 border-2 border-dashed border-gray-300">
+                        <i data-lucide="award" class="w-8 h-8 mx-auto text-gray-500"></i>
+                        <p class="text-xs font-medium mt-1 text-gray-600">Quiz Master</p>
+                    </div>
+                    <div id="badge-champion" class="p-3 rounded-lg bg-gray-100 border-2 border-dashed border-gray-300">
+                        <i data-lucide="shield-plus" class="w-8 h-8 mx-auto text-gray-500"></i>
+                        <p class="text-xs font-medium mt-1 text-gray-600">DBT Champion</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="verification-section" class="page-section hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Simulated Account Verification</h2>
+            <div class="bg-white p-6 rounded-xl card-shadow">
+                <p class="text-gray-600 mb-4">Enter your details to check your simulated Aadhaar-DBT linking status.</p>
+                <form id="verification-form" class="space-y-4">
+                    <div>
+                        <label for="aadhaar-input" class="block text-sm font-medium text-gray-700">Aadhaar Number (12 Digits)</label>
+                        <input type="text" id="aadhaar-input" required maxlength="12" pattern="[0-9]{12}" placeholder="XXXX XXXX XXXX" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                        <p id="aadhaar-error" class="text-sm text-red-500 mt-1 hidden">Please enter a valid 12-digit Aadhaar number.</p>
+                    </div>
+                    <div>
+                        <label for="bank-account-input" class="block text-sm font-medium text-gray-700">Bank Account Number</label>
+                        <input type="text" id="bank-account-input" required minlength="8" placeholder="Enter Account Number" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]">
+                    </div>
+                    <button type="submit" class="w-full bg-[var(--color-primary)] text-white font-semibold p-3 rounded-lg hover:bg-teal-600 transition">
+                        Verify Status (Simulated)
+                    </button>
+                </form>
+                <div id="verification-result" class="mt-6 p-4 rounded-xl text-center hidden"></div>
+            </div>
+        </section>
+        
+        <div id="custom-alert-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+            <div class="bg-white p-6 rounded-xl card-shadow max-w-sm w-full space-y-4">
+                <h3 id="alert-title" class="text-xl font-bold text-gray-800"></h3>
+                <p id="alert-message" class="text-gray-600"></p>
+                <button onclick="document.getElementById('custom-alert-modal').classList.add('hidden')" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition">
+                    OK
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="fixed bottom-0 left-0 right-0 bg-white shadow-xl border-t z-20">
+        <nav class="flex justify-around items-center h-16">
+            <button class="icon-nav flex flex-col items-center justify-center w-1/4 h-full active" onclick="navigate('home-section')">
+                <i data-lucide="home" class="w-6 h-6"></i>
+                <span class="text-xs mt-1">Home</span>
+            </button>
+            <button class="icon-nav flex flex-col items-center justify-center w-1/4 h-full" onclick="navigate('awareness-section')">
+                <i data-lucide="video" class="w-6 h-6"></i>
+                <span class="text-xs mt-1">Learn</span>
+            </button>
+            <button class="icon-nav flex flex-col items-center justify-center w-1/4 h-full" onclick="navigate('quiz-section')">
+                <i data-lucide="list-checks" class="w-6 h-6"></i>
+                <span class="text-xs mt-1">Quiz</span>
+            </button>
+            <button class="icon-nav flex flex-col items-center justify-center w-1/4 h-full" onclick="navigate('verification-section')">
+                <i data-lucide="verified" class="w-6 h-6"></i>
+                <span class="text-xs mt-1">Check</span>
+            </button>
+        </nav>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

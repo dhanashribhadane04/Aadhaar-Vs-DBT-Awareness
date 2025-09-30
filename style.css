@@ -1,0 +1,35 @@
+/* Custom styles for Inter font and smooth transitions */
+:root {
+    --color-primary: #008080; /* Teal/Turquoise */
+    --color-secondary: #00BFFF; /* Deep Sky Blue */
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fbfd;
+}
+.icon-nav {
+    transition: all 0.2s;
+}
+.icon-nav.active {
+    color: var(--color-primary);
+    border-top: 2px solid var(--color-primary);
+    background-color: #e0f2f2;
+}
+.card-shadow {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+}
+/* Custom styles for chatbot messages */
+.chatbot-message-user {
+    background-color: var(--color-primary);
+    color: white;
+    border-bottom-right-radius: 0;
+    max-width: 80%;
+    margin-left: auto;
+}
+.chatbot-message-ai {
+    background-color: #e2e8f0;
+    color: #1e293b;
+    border-bottom-left-radius: 0;
+    max-width: 80%;
+    margin-right: auto;
+}
